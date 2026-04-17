@@ -1,6 +1,6 @@
 <div align="center">
     <img src="public/images/logo.png" alt="Yaksa Logo" width="120" style="margin-bottom: 20px;">
-    <h1>Inventaris Yaksa 📦</h1>
+    <h1>Inventaris Yaksa</h1>
     <p>Sistem Manajemen Inventaris Modern & Real-Time untuk PT Yaksa Ersada Solusindo</p>
 </div>
 
