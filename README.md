@@ -111,5 +111,5 @@ Setelah menjalankan *seeder*, Anda bisa masuk menggunakan akun berikut:
 ---
 
 <div align="center">
-    <strong>Dibuat dengan ❤️ untuk PT Yaksa Ersada Solusindo</strong>
+    <strong>Copyright ©2026</strong>
 </div>
