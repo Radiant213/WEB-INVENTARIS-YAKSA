@@ -10,7 +10,7 @@
             <h1 class="text-2xl font-bold text-gray-900">Tambah Barang Baru</h1>
             <p class="text-sm text-gray-500 mt-1">Isi data perangkat baru ke dalam inventaris.</p>
         </div>
-        <a href="{{ route('items.index') }}" class="px-4 py-2.5 bg-white border border-gray-300 rounded-xl text-sm font-medium text-gray-700 hover:bg-gray-50 hover:border-gray-400 transition-all duration-200 flex items-center gap-2">
+        <a href="{{ route('items.index', ['gudang' => $activeGudang]) }}" class="px-4 py-2.5 bg-white border border-gray-300 rounded-xl text-sm font-medium text-gray-700 hover:bg-gray-50 hover:border-gray-400 transition-all duration-200 flex items-center gap-2">
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
             Kembali
         </a>
@@ -22,6 +22,20 @@
         
         <form method="POST" action="{{ route('items.store') }}" class="space-y-6">
             @csrf
+            <input type="hidden" name="gudang" value="{{ $activeGudang }}">
+
+            <div class="space-y-2 mb-6">
+                <label for="category_id" class="block text-sm font-semibold text-gray-700">Kategori Barang (Opsional)</label>
+                <select name="category_id" id="category_id" class="block w-full px-4 py-3 border border-gray-300 rounded-xl text-sm text-gray-900 bg-gray-50 focus:bg-white focus:ring-2 focus:ring-yaksa-red/20 focus:border-yaksa-red hover:border-gray-400 transition-all duration-200 cursor-pointer">
+                    <option value="">-- Pilih Kategori --</option>
+                    @foreach($categories as $category)
+                        <option value="{{ $category->id }}" {{ old('category_id') == $category->id ? 'selected' : '' }}>
+                            {{ $category->name }}
+                        </option>
+                    @endforeach
+                </select>
+                @error('category_id') <span class="text-xs text-red-500">{{ $message }}</span> @enderror
+            </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <!-- Nama Perangkat -->
@@ -57,6 +71,7 @@
                         <option value="Ready" {{ old('status') == 'Ready' ? 'selected' : '' }}>Ready</option>
                         <option value="Barang Keluar" {{ old('status') == 'Barang Keluar' ? 'selected' : '' }}>Barang Keluar</option>
                         <option value="Barang RMA" {{ old('status') == 'Barang RMA' ? 'selected' : '' }}>Barang RMA</option>
+                        <option value="Barang Rusak" {{ old('status') == 'Barang Rusak' ? 'selected' : '' }}>Barang Rusak</option>
                         <option value="Milik Internal" {{ old('status') == 'Milik Internal' ? 'selected' : '' }}>Milik Internal</option>
                     </select>
                     @error('status') <span class="text-xs text-red-500">{{ $message }}</span> @enderror
@@ -114,7 +129,7 @@
 
             <!-- Submit -->
             <div class="flex justify-end gap-3 pt-4 border-t border-gray-100">
-                <a href="{{ route('items.index') }}" class="px-6 py-3 bg-white border border-gray-300 rounded-xl text-sm font-medium text-gray-700 hover:bg-gray-50 transition-all duration-200 active:scale-95">
+                <a href="{{ route('items.index', ['gudang' => $activeGudang]) }}" class="px-6 py-3 bg-white border border-gray-300 rounded-xl text-sm font-medium text-gray-700 hover:bg-gray-50 transition-all duration-200 active:scale-95">
                     Batal
                 </a>
                 <button type="submit" class="px-6 py-3 bg-gradient-to-r from-red-600 to-red-500 text-white rounded-xl text-sm font-semibold hover:from-red-500 hover:to-red-400 hover:shadow-lg hover:shadow-red-500/25 transition-all duration-200 active:scale-95 transform hover:-translate-y-0.5">

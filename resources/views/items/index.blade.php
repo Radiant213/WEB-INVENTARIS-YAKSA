@@ -24,11 +24,20 @@
     <!-- Filters Bar -->
     <div class="flex flex-col sm:flex-row justify-between items-center mb-4 space-y-3 sm:space-y-0"
          x-show="loaded" x-transition:enter="transition ease-out duration-500 delay-100" x-transition:enter-start="opacity-0 translate-y-4" x-transition:enter-end="opacity-100 translate-y-0">
-        <div class="text-sm text-gray-500">
-            Total: <span class="font-semibold text-gray-800">{{ $items->count() }}</span> perangkat
+        <div class="text-sm text-gray-500 w-full sm:w-auto">
+            Total: <span class="font-semibold text-gray-800">{{ $items->total() }}</span> perangkat
         </div>
-        <div class="flex space-x-2 w-full sm:w-auto">
-            <form method="GET" action="{{ route('items.index') }}" class="flex space-x-2" id="filterForm">
+        <div class="flex flex-wrap w-full sm:w-auto gap-2">
+            <form method="GET" action="{{ route('items.index') }}" class="flex flex-wrap gap-2 w-full sm:w-auto" id="filterForm">
+                
+                {{-- Kategori Filter --}}
+                <select name="category_id" onchange="document.getElementById('filterForm').submit()"
+                        class="border border-gray-300 text-gray-700 text-sm rounded-xl focus:ring-2 focus:ring-yaksa-red/20 focus:border-yaksa-red p-2.5 bg-white hover:border-gray-400 transition-all duration-200 cursor-pointer">
+                    <option value="all" {{ request('category_id') == 'all' || !request('category_id') ? 'selected' : '' }}>Semua Kategori</option>
+                    @foreach($categories as $category)
+                    <option value="{{ $category->id }}" {{ request('category_id') == $category->id ? 'selected' : '' }}>{{ $category->name }}</option>
+                    @endforeach
+                </select>
                 <select name="status" onchange="document.getElementById('filterForm').submit()"
                         class="border border-gray-300 text-gray-700 text-sm rounded-xl focus:ring-2 focus:ring-yaksa-red/20 focus:border-yaksa-red p-2.5 bg-white hover:border-gray-400 transition-all duration-200 cursor-pointer">
                     <option value="all" {{ request('status') == 'all' || !request('status') ? 'selected' : '' }}>Semua Status</option>
@@ -48,8 +57,9 @@
     </div>
 
     <!-- Table Card -->
-    <div class="bg-white rounded-2xl border border-gray-200 overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300"
-         x-show="loaded" x-transition:enter="transition ease-out duration-500 delay-200" x-transition:enter-start="opacity-0 translate-y-6" x-transition:enter-end="opacity-100 translate-y-0">
+    <div id="items-table-container">
+        <div class="bg-white rounded-2xl border border-gray-200 overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300"
+             x-show="loaded" x-transition:enter="transition ease-out duration-500 delay-200" x-transition:enter-start="opacity-0 translate-y-6" x-transition:enter-end="opacity-100 translate-y-0">
         <div class="overflow-x-auto">
             <table class="w-full text-sm text-left text-gray-600">
                 <thead class="text-xs text-gray-500 uppercase bg-gray-50/80 border-b border-gray-200">
@@ -90,8 +100,12 @@
                                     <span class="w-1.5 h-1.5 mr-1.5 bg-amber-500 rounded-full"></span> Keluar
                                 </span>
                             @elseif($item->status == 'Barang RMA')
+                                <span class="inline-flex items-center px-2.5 py-1 rounded-lg text-xs font-semibold bg-purple-50 text-purple-700 border border-purple-200/50">
+                                    <span class="w-1.5 h-1.5 mr-1.5 bg-purple-500 rounded-full"></span> RMA / Spare
+                                </span>
+                            @elseif($item->status == 'Barang Rusak')
                                 <span class="inline-flex items-center px-2.5 py-1 rounded-lg text-xs font-semibold bg-red-50 text-red-700 border border-red-200/50">
-                                    <span class="w-1.5 h-1.5 mr-1.5 bg-red-500 rounded-full"></span> RMA
+                                    <span class="w-1.5 h-1.5 mr-1.5 bg-red-500 rounded-full"></span> Rusak
                                 </span>
                             @elseif($item->status == 'Milik Internal' || $item->status == 'Digunakan Internal')
                                 <span class="inline-flex items-center px-2.5 py-1 rounded-lg text-xs font-semibold bg-blue-50 text-blue-700 border border-blue-200/50">
@@ -151,6 +165,16 @@
                                         <span class="text-gray-900 font-medium text-base">{{ $item->os_version ?? 'N/A' }}</span>
                                     </div>
                                     <div>
+                                        <span class="block text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-1">Tanggal Terdaftar</span>
+                                        <span class="text-gray-700 font-medium">{{ $item->created_at->format('d/m/Y H:i') }}</span>
+                                    </div>
+                                    @if($item->status == 'Barang Keluar' && $item->transactions->where('tipe_transaksi', 'out')->count() > 0)
+                                    <div>
+                                        <span class="block text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-1 text-amber-600">Tanggal Keluar Terakhir</span>
+                                        <span class="text-gray-700">{{ $item->transactions->where('tipe_transaksi', 'out')->sortByDesc('tanggal_transaksi')->first()->tanggal_transaksi->format('d/m/Y') }}</span>
+                                    </div>
+                                    @endif
+                                    <div class="pt-2">
                                         <span class="block text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-1">Description</span>
                                         <span class="text-gray-700">{{ $item->description ?? '-' }}</span>
                                     </div>
@@ -232,6 +256,7 @@
             <span>Menampilkan <span class="font-semibold text-gray-700">{{ $items->count() }}</span> perangkat</span>
         </div>
         @endif
+        </div>
     </div>
 
     <!-- Transaction Modal -->

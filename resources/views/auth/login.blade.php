@@ -110,7 +110,7 @@
                                class="w-4 h-4 rounded-full border-white/20 bg-white/5 text-red-500 focus:ring-red-500/30 focus:ring-offset-0 transition-colors">
                         <span class="text-sm text-slate-400 group-hover:text-slate-300 transition-colors">Ingat saya</span>
                     </label>
-                    <a href="#" class="text-sm text-slate-300 hover:text-red-400 transition-colors duration-200">Lupa Password?</a>
+                    <a href="{{ route('password.request') }}" class="text-sm text-slate-300 hover:text-red-400 transition-colors duration-200">Lupa Password?</a>
                 </div>
 
                 {{-- Submit Button --}}
@@ -122,6 +122,10 @@
                                focus:outline-none focus:ring-2 focus:ring-red-500/50 focus:ring-offset-2 focus:ring-offset-slate-900">
                     Masuk ke Dashboard
                 </button>
+                
+                <div class="text-center mt-4">
+                    <p class="text-sm text-slate-400">Belum punya akun? <a href="{{ route('register') }}" class="text-red-400 hover:text-red-300 font-semibold transition-colors">Daftar sekarang</a></p>
+                </div>
             </form>
 
             {{-- Footer Branding --}}

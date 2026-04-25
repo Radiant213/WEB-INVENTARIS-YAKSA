@@ -7,7 +7,7 @@
     <div class="flex justify-between items-center mb-6"
          x-show="loaded" x-transition:enter="transition ease-out duration-500" x-transition:enter-start="opacity-0 translate-y-4" x-transition:enter-end="opacity-100 translate-y-0">
         <div>
-            <h1 class="text-2xl font-bold text-gray-900">Log Transaksi</h1>
+            <h1 class="text-2xl font-bold text-gray-900">Log Transaksi {{ $activeGudang == 'universal' ? 'Semua Gudang' : 'Gudang ' . ucfirst($activeGudang) }}</h1>
             <p class="text-sm text-gray-500 mt-1">Riwayat pergerakan barang masuk dan keluar.</p>
         </div>
         <div class="flex space-x-3">
@@ -19,6 +19,34 @@
                 <svg class="w-4 h-4 group-hover:animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"></path></svg>
                 Barang Keluar
             </button>
+        </div>
+    </div>
+
+    <!-- Filters Bar -->
+    <div class="flex flex-col sm:flex-row justify-between items-center mb-4 space-y-3 sm:space-y-0"
+         x-show="loaded" x-transition:enter="transition ease-out duration-500 delay-100" x-transition:enter-start="opacity-0 translate-y-4" x-transition:enter-end="opacity-100 translate-y-0">
+        <div class="text-sm text-gray-500">
+            Total: <span class="font-semibold text-gray-800">{{ $transactions->total() }}</span> transaksi
+        </div>
+        <div class="flex flex-wrap gap-2 w-full sm:w-auto">
+            <form method="GET" action="{{ route('transactions.index') }}" class="flex flex-wrap gap-2 w-full sm:w-auto" id="txFilterForm">
+                {{-- Tipe Transaksi --}}
+                <select name="tipe" onchange="document.getElementById('txFilterForm').submit()"
+                        class="border border-gray-300 text-gray-700 text-sm rounded-xl focus:ring-2 focus:ring-yaksa-red/20 focus:border-yaksa-red p-2.5 bg-white hover:border-gray-400 transition-all duration-200 cursor-pointer">
+                    <option value="all" {{ request('tipe') == 'all' || !request('tipe') ? 'selected' : '' }}>Semua Tipe</option>
+                    <option value="in" {{ request('tipe') == 'in' ? 'selected' : '' }}>↓ Barang Masuk</option>
+                    <option value="out" {{ request('tipe') == 'out' ? 'selected' : '' }}>↑ Barang Keluar</option>
+                </select>
+
+                {{-- Kategori Barang --}}
+                <select name="category_id" onchange="document.getElementById('txFilterForm').submit()"
+                        class="border border-gray-300 text-gray-700 text-sm rounded-xl focus:ring-2 focus:ring-yaksa-red/20 focus:border-yaksa-red p-2.5 bg-white hover:border-gray-400 transition-all duration-200 cursor-pointer">
+                    <option value="all" {{ request('category_id') == 'all' || !request('category_id') ? 'selected' : '' }}>Semua Kategori</option>
+                    @foreach($categories as $cat)
+                    <option value="{{ $cat->id }}" {{ request('category_id') == $cat->id ? 'selected' : '' }}>{{ $cat->name }}</option>
+                    @endforeach
+                </select>
+            </form>
         </div>
     </div>
 

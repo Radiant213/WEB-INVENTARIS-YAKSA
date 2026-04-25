@@ -20,6 +20,8 @@
         input[type="checkbox"]:checked { background: #DC2626; border-color: #DC2626; }
         input[type="checkbox"]:checked::after { content: ''; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 0.35rem; height: 0.35rem; border-radius: 9999px; background: white; }
         input[type="checkbox"]:hover { border-color: #DC2626; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
     </style>
 </head>
 <body class="bg-yaksa-bg text-yaksa-text font-sans antialiased">
@@ -37,7 +39,7 @@
                 <span x-show="!collapsed" x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" class="text-lg font-bold tracking-wider whitespace-nowrap">Inventaris<span class="text-yaksa-red">Yaksa</span></span>
             </div>
             
-            <nav class="flex-1 px-3 py-6 space-y-1.5 overflow-y-auto">
+            <nav class="flex-1 px-3 py-6 space-y-1.5 overflow-y-auto hide-scrollbar">
                 <!-- Dashboard -->
                 <a href="{{ route('dashboard') }}" 
                    class="group flex items-center rounded-xl transition-all duration-200
@@ -46,33 +48,85 @@
                     <svg class="w-5 h-5 flex-shrink-0 {{ request()->routeIs('dashboard') ? 'text-yaksa-red' : 'group-hover:scale-110' }} transition-transform duration-200" :class="collapsed ? '' : 'mr-3'" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg>
                     <span x-show="!collapsed" x-transition class="whitespace-nowrap">Dashboard</span>
                 </a>
+
+                @php
+                    $gudangs = [
+                        'jakarta' => ['label' => 'Gudang Jakarta', 'color' => 'text-yaksa-red', 'border' => 'border-yaksa-red'],
+                        'bali' => ['label' => 'Gudang Bali', 'color' => 'text-blue-400', 'border' => 'border-blue-500'],
+                        'sfp' => ['label' => 'Small Form-factor Pluggable', 'color' => 'text-emerald-400', 'border' => 'border-emerald-500'],
+                    ];
+                    $currentGudang = request('gudang');
+                @endphp
+
+                @foreach($gudangs as $key => $g)
+                <div class="pt-4 mt-4 border-t border-gray-800" x-data="{ open: '{{ $currentGudang }}' === '{{ $key }}' }">
+                    <button @click="open = !open" class="w-full flex items-start justify-between px-4 mb-2 text-[10px] font-bold uppercase tracking-widest text-gray-600 hover:text-gray-400 transition-colors focus:outline-none group">
+                        <span x-show="!collapsed" class="text-left leading-relaxed pr-2">{{ $g['label'] }}</span>
+                        <svg x-show="!collapsed" class="w-3 h-3 flex-shrink-0 mt-0.5 transition-transform duration-200" :class="open ? 'rotate-180' : ''" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </button>
+                    
+                    <div x-show="open || collapsed" x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0 -translate-y-2" x-transition:enter-end="opacity-100 translate-y-0" class="space-y-1.5">
+                        <!-- Barang -->
+                        <a href="{{ route('items.index', ['gudang' => $key]) }}" 
+                           class="group flex items-center rounded-xl transition-all duration-200
+                                  {{ request()->routeIs('items.*') && $currentGudang == $key ? 'bg-gray-800/80 text-white border-l-4 '.$g['border'].' shadow-lg shadow-black/10' : 'text-gray-400 hover:bg-gray-800/70 hover:text-white hover:translate-x-1' }}"
+                           :class="collapsed ? 'px-3 py-3 justify-center' : 'px-4 py-3'" :title="collapsed ? 'Barang '.($key == 'sfp' ? 'SFP' : ucfirst($key)) : ''">
+                            <svg class="w-5 h-5 flex-shrink-0 {{ request()->routeIs('items.*') && $currentGudang == $key ? $g['color'] : 'group-hover:scale-110' }} transition-transform duration-200" :class="collapsed ? '' : 'mr-3'" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"></path></svg>
+                            <span x-show="!collapsed" x-transition class="whitespace-nowrap">Barang {{ $key == 'sfp' ? 'SFP' : ucfirst($key) }}</span>
+                        </a>
+
+                        @if(Auth::user() && Auth::user()->isAdmin())
+                        <!-- Kategori -->
+                        <a href="{{ route('categories.index', ['gudang' => $key]) }}" 
+                           class="group flex items-center rounded-xl transition-all duration-200
+                                  {{ request()->routeIs('categories.*') && $currentGudang == $key ? 'bg-gray-800/80 text-white border-l-4 '.$g['border'].' shadow-lg shadow-black/10' : 'text-gray-400 hover:bg-gray-800/70 hover:text-white hover:translate-x-1' }}"
+                           :class="collapsed ? 'px-3 py-3 justify-center' : 'px-4 py-3'" :title="collapsed ? 'Kategori '.($key == 'sfp' ? 'SFP' : ucfirst($key)) : ''">
+                            <svg class="w-5 h-5 flex-shrink-0 {{ request()->routeIs('categories.*') && $currentGudang == $key ? $g['color'] : 'group-hover:scale-110' }} transition-transform duration-200" :class="collapsed ? '' : 'mr-3'" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path></svg>
+                            <span x-show="!collapsed" x-transition class="whitespace-nowrap">Kategori {{ $key == 'sfp' ? 'SFP' : ucfirst($key) }}</span>
+                        </a>
+                        @endif
+
+                        <!-- Transaksi Gudang -->
+                        <a href="{{ route('transactions.index', ['gudang' => $key]) }}" 
+                           class="group flex items-center rounded-xl transition-all duration-200
+                                  {{ request()->routeIs('transactions.*') && $currentGudang == $key ? 'bg-gray-800/80 text-white border-l-4 '.$g['border'].' shadow-lg shadow-black/10' : 'text-gray-400 hover:bg-gray-800/70 hover:text-white hover:translate-x-1' }}"
+                           :class="collapsed ? 'px-3 py-3 justify-center' : 'px-4 py-3'" :title="collapsed ? 'Transaksi '.($key == 'sfp' ? 'SFP' : ucfirst($key)) : ''">
+                            <svg class="w-5 h-5 flex-shrink-0 {{ request()->routeIs('transactions.*') && $currentGudang == $key ? $g['color'] : 'group-hover:scale-110' }} transition-transform duration-200" :class="collapsed ? '' : 'mr-3'" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"></path></svg>
+                            <span x-show="!collapsed" x-transition class="whitespace-nowrap">Transaksi {{ $key == 'sfp' ? 'SFP' : ucfirst($key) }}</span>
+                        </a>
+
+                        <!-- Laporan Gudang -->
+                        <a href="{{ route('laporan.index', ['gudang' => $key]) }}" 
+                           class="group flex items-center rounded-xl transition-all duration-200
+                                  {{ request()->routeIs('laporan.*') && $currentGudang == $key ? 'bg-gray-800/80 text-white border-l-4 '.$g['border'].' shadow-lg shadow-black/10' : 'text-gray-400 hover:bg-gray-800/70 hover:text-white hover:translate-x-1' }}"
+                           :class="collapsed ? 'px-3 py-3 justify-center' : 'px-4 py-3'" :title="collapsed ? 'Laporan '.($key == 'sfp' ? 'SFP' : ucfirst($key)) : ''">
+                            <svg class="w-5 h-5 flex-shrink-0 {{ request()->routeIs('laporan.*') && $currentGudang == $key ? $g['color'] : 'group-hover:scale-110' }} transition-transform duration-200" :class="collapsed ? '' : 'mr-3'" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+                            <span x-show="!collapsed" x-transition class="whitespace-nowrap">Laporan {{ $key == 'sfp' ? 'SFP' : ucfirst($key) }}</span>
+                        </a>
+                    </div>
+                </div>
+                @endforeach
                 
-                <!-- Master Barang -->
-                <a href="{{ route('items.index') }}" 
-                   class="group flex items-center rounded-xl transition-all duration-200
-                          {{ request()->routeIs('items.*') ? 'bg-gray-800/80 text-white border-l-4 border-yaksa-red shadow-lg shadow-black/10' : 'text-gray-400 hover:bg-gray-800/70 hover:text-white hover:translate-x-1' }}"
-                   :class="collapsed ? 'px-3 py-3 justify-center' : 'px-4 py-3'" :title="collapsed ? 'Master Barang' : ''">
-                    <svg class="w-5 h-5 flex-shrink-0 {{ request()->routeIs('items.*') ? 'text-yaksa-red' : 'group-hover:scale-110' }} transition-transform duration-200" :class="collapsed ? '' : 'mr-3'" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"></path></svg>
-                    <span x-show="!collapsed" x-transition class="whitespace-nowrap">Master Barang</span>
-                </a>
+                <div class="pt-4 mt-4 border-t border-gray-800">
+                    <p x-show="!collapsed" class="px-4 text-[10px] font-bold uppercase tracking-widest text-gray-600 mb-2">Global</p>
+                    <!-- Log Transaksi Universal -->
+                    <a href="{{ route('transactions.index', ['gudang' => 'universal']) }}" 
+                       class="group flex items-center rounded-xl transition-all duration-200
+                              {{ request()->routeIs('transactions.*') && ($currentGudang == 'universal' || !$currentGudang) ? 'bg-gray-800/80 text-white border-l-4 border-yaksa-red shadow-lg shadow-black/10' : 'text-gray-400 hover:bg-gray-800/70 hover:text-white hover:translate-x-1' }}"
+                       :class="collapsed ? 'px-3 py-3 justify-center' : 'px-4 py-3'" :title="collapsed ? 'Log Transaksi Global' : ''">
+                        <svg class="w-5 h-5 flex-shrink-0 {{ request()->routeIs('transactions.*') && ($currentGudang == 'universal' || !$currentGudang) ? 'text-yaksa-red' : 'group-hover:scale-110' }} transition-transform duration-200" :class="collapsed ? '' : 'mr-3'" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"></path></svg>
+                        <span x-show="!collapsed" x-transition class="whitespace-nowrap">Semua Transaksi</span>
+                    </a>
 
-                <!-- Log Transaksi -->
-                <a href="{{ route('transactions.index') }}" 
-                   class="group flex items-center rounded-xl transition-all duration-200
-                          {{ request()->routeIs('transactions.*') ? 'bg-gray-800/80 text-white border-l-4 border-yaksa-red shadow-lg shadow-black/10' : 'text-gray-400 hover:bg-gray-800/70 hover:text-white hover:translate-x-1' }}"
-                   :class="collapsed ? 'px-3 py-3 justify-center' : 'px-4 py-3'" :title="collapsed ? 'Log Transaksi' : ''">
-                    <svg class="w-5 h-5 flex-shrink-0 {{ request()->routeIs('transactions.*') ? 'text-yaksa-red' : 'group-hover:scale-110' }} transition-transform duration-200" :class="collapsed ? '' : 'mr-3'" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"></path></svg>
-                    <span x-show="!collapsed" x-transition class="whitespace-nowrap">Log Transaksi</span>
-                </a>
-
-                <!-- Laporan -->
-                <a href="{{ route('laporan.index') }}" 
-                   class="group flex items-center rounded-xl transition-all duration-200
-                          {{ request()->routeIs('laporan.*') ? 'bg-gray-800/80 text-white border-l-4 border-yaksa-red shadow-lg shadow-black/10' : 'text-gray-400 hover:bg-gray-800/70 hover:text-white hover:translate-x-1' }}"
-                   :class="collapsed ? 'px-3 py-3 justify-center' : 'px-4 py-3'" :title="collapsed ? 'Laporan' : ''">
-                    <svg class="w-5 h-5 flex-shrink-0 {{ request()->routeIs('laporan.*') ? 'text-yaksa-red' : 'group-hover:scale-110' }} transition-transform duration-200" :class="collapsed ? '' : 'mr-3'" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
-                    <span x-show="!collapsed" x-transition class="whitespace-nowrap">Laporan</span>
-                </a>
+                    <!-- Laporan Universal -->
+                    <a href="{{ route('laporan.index', ['gudang' => 'universal']) }}" 
+                       class="group flex items-center rounded-xl transition-all duration-200
+                              {{ request()->routeIs('laporan.*') && ($currentGudang == 'universal' || !$currentGudang) ? 'bg-gray-800/80 text-white border-l-4 border-yaksa-red shadow-lg shadow-black/10' : 'text-gray-400 hover:bg-gray-800/70 hover:text-white hover:translate-x-1' }}"
+                       :class="collapsed ? 'px-3 py-3 justify-center' : 'px-4 py-3'" :title="collapsed ? 'Laporan Global' : ''">
+                        <svg class="w-5 h-5 flex-shrink-0 {{ request()->routeIs('laporan.*') && ($currentGudang == 'universal' || !$currentGudang) ? 'text-yaksa-red' : 'group-hover:scale-110' }} transition-transform duration-200" :class="collapsed ? '' : 'mr-3'" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+                        <span x-show="!collapsed" x-transition class="whitespace-nowrap">Semua Laporan</span>
+                    </a>
+                </div>
 
                 {{-- Super Admin Only --}}
                 @if(Auth::user() && Auth::user()->isSuperAdmin())
@@ -117,38 +171,16 @@
             <!-- Topbar -->
             <header class="h-16 bg-white border-b border-yaksa-border flex items-center justify-between px-6 z-20 shadow-sm">
                 <!-- Search with Realtime Suggestions -->
-                <div class="flex-1 max-w-xl" x-data="searchBar()">
+                <form method="GET" action="{{ route('items.index') }}" x-data="globalSearch()" @submit.prevent="submitSearch()" class="flex-1 max-w-xl">
                     <div class="relative w-full group">
                         <span class="absolute inset-y-0 left-0 pl-3 flex items-center text-gray-400 group-focus-within:text-yaksa-red transition-colors duration-300">
                             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
                         </span>
-                        <input type="text" x-model="query" @input.debounce.250ms="search()" @focus="showResults = results.length > 0" @click.outside="showResults = false"
+                        <input type="text" name="q" x-model="query" @input.debounce.500ms="liveSearch()"
                                class="block w-full pl-10 pr-3 py-2.5 border border-gray-200 rounded-xl bg-gray-50 focus:bg-white focus:ring-2 focus:ring-yaksa-red/20 focus:border-yaksa-red sm:text-sm transition-all duration-300"
-                               placeholder="Cari perangkat, serial number...">
-                        
-                        <!-- Search Results Dropdown -->
-                        <div x-show="showResults && results.length > 0" x-cloak x-transition
-                             class="absolute top-full left-0 right-0 mt-2 bg-white border border-gray-200 rounded-xl shadow-2xl overflow-hidden z-50">
-                            <template x-for="item in results" :key="item.id">
-                                <a :href="'/items?q=' + item.nama_perangkat" class="flex items-center px-4 py-3 hover:bg-red-50/50 transition-colors no-underline border-b border-gray-50 last:border-0">
-                                    <div class="w-8 h-8 rounded-lg bg-gray-100 flex items-center justify-center mr-3 flex-shrink-0">
-                                        <svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"></path></svg>
-                                    </div>
-                                    <div class="min-w-0 flex-1">
-                                        <p class="text-sm font-medium text-gray-900 truncate" x-text="item.nama_perangkat"></p>
-                                        <p class="text-xs text-gray-400 font-mono" x-text="item.serial_number"></p>
-                                    </div>
-                                    <span class="text-xs px-2 py-0.5 rounded-md font-medium ml-2"
-                                          :class="{
-                                              'bg-emerald-50 text-emerald-700': item.status === 'Ready',
-                                              'bg-amber-50 text-amber-700': item.status === 'Barang Keluar',
-                                              'bg-red-50 text-red-700': item.status === 'Barang RMA',
-                                          }" x-text="item.status"></span>
-                                </a>
-                            </template>
-                        </div>
+                               placeholder="Cari perangkat, serial number... (Tekan Enter)">
                     </div>
-                </div>
+                </form>
 
                 <div class="ml-6 flex items-center space-x-3">
                     <!-- Notification Bell -->
@@ -265,19 +297,38 @@
             };
         }
 
-        function searchBar() {
+
+        function globalSearch() {
             return {
-                query: '',
-                results: [],
-                showResults: false,
-                search() {
-                    if (this.query.length < 1) { this.results = []; this.showResults = false; return; }
-                    fetch('/api/items/search?q=' + encodeURIComponent(this.query), {
-                        headers: { 'X-Requested-With': 'XMLHttpRequest' }
-                    })
-                    .then(r => r.json())
-                    .then(data => { this.results = data; this.showResults = data.length > 0; })
-                    .catch(() => {});
+                query: '{{ request('q') }}',
+                liveSearch() {
+                    // Hanya auto-update (AJAX) kalau di halaman Master Barang
+                    if (window.location.pathname !== '{{ route('items.index', [], false) }}') return;
+                    this.fetchData();
+                },
+                submitSearch() {
+                    // Kalau di halaman lain, submit form standar ke Master Barang
+                    if (window.location.pathname !== '{{ route('items.index', [], false) }}') {
+                        this.$el.submit();
+                        return;
+                    }
+                    this.fetchData();
+                },
+                fetchData() {
+                    const url = new URL(window.location.href);
+                    url.searchParams.set('q', this.query);
+                    window.history.pushState({}, '', url);
+
+                    fetch(url, { headers: { 'X-Requested-With': 'XMLHttpRequest' } })
+                    .then(r => r.text())
+                    .then(html => {
+                        const parser = new DOMParser();
+                        const doc = parser.parseFromString(html, 'text/html');
+                        const newTable = doc.querySelector('#items-table-container');
+                        if (newTable) {
+                            document.querySelector('#items-table-container').innerHTML = newTable.innerHTML;
+                        }
+                    });
                 }
             };
         }

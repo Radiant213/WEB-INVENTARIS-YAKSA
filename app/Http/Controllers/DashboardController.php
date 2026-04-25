@@ -15,6 +15,9 @@ class DashboardController extends Controller
         $readyItems = Item::where('status', 'Ready')->count();
         $keluarItems = Item::where('status', 'Barang Keluar')->count();
         $rmaItems = Item::where('status', 'Barang RMA')->count();
+        $rusakItems = Item::where('status', 'Barang Rusak')->count();
+        
+        $masukItems = Transaction::where('tipe_transaksi', 'in')->count();
 
         $recentTransactions = Transaction::with(['item', 'user'])
             ->latest('tanggal_transaksi')
@@ -39,6 +42,8 @@ class DashboardController extends Controller
             'readyItems',
             'keluarItems',
             'rmaItems',
+            'rusakItems',
+            'masukItems',
             'recentTransactions',
             'statusDistribution',
             'lokasiDistribution'

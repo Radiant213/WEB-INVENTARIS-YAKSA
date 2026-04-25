@@ -13,6 +13,18 @@ use App\Http\Controllers\LaporanController;
 Route::middleware('guest')->group(function () {
     Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
     Route::post('/login', [AuthController::class, 'login'])->name('login.post');
+
+    // Registration
+    Route::get('/register', [AuthController::class, 'showRegister'])->name('register');
+    Route::post('/register', [AuthController::class, 'processRegister'])->name('register.post');
+    Route::get('/register/verify', [AuthController::class, 'showVerifyRegister'])->name('register.verify');
+    Route::post('/register/verify', [AuthController::class, 'verifyRegister'])->name('register.verify.post');
+
+    // Forgot Password
+    Route::get('/forgot-password', [AuthController::class, 'showForgotPassword'])->name('password.request');
+    Route::post('/forgot-password', [AuthController::class, 'sendResetOtp'])->name('password.email');
+    Route::get('/forgot-password/verify', [AuthController::class, 'showVerifyReset'])->name('password.verify');
+    Route::post('/forgot-password/verify', [AuthController::class, 'processResetPassword'])->name('password.update');
 });
 
 Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth')->name('logout');
@@ -46,6 +58,9 @@ Route::middleware(['auth'])->group(function () {
         Route::put('/items/{item}', [ItemController::class, 'update'])->name('items.update');
         Route::delete('/items/{item}', [ItemController::class, 'destroy'])->name('items.destroy');
         Route::delete('/transactions/{transaction}', [TransactionController::class, 'destroy'])->name('transactions.destroy');
+        
+        // Category Management
+        Route::resource('categories', \App\Http\Controllers\CategoryController::class)->except(['create', 'show', 'edit']);
     });
 
     // Super Admin only

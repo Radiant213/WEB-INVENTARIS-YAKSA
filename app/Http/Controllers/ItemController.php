@@ -12,7 +12,12 @@ class ItemController extends Controller
 {
     public function index(Request $request)
     {
-        $query = Item::with('transactions.user');
+        $query = Item::with(['transactions.user', 'category']);
+
+        // Filter gudang
+        if ($request->filled('gudang') && $request->gudang !== 'universal') {
+            $query->where('gudang', $request->gudang);
+        }
 
         // Filter status
         if ($request->filled('status') && $request->status !== 'all') {
@@ -24,13 +29,38 @@ class ItemController extends Controller
             $query->where('lokasi_device', $request->lokasi);
         }
 
+        // Filter berdasarkan kategori (tab system)
+        if ($request->filled('category_id') && $request->category_id !== 'all') {
+            $query->where('category_id', $request->category_id);
+        }
+
+        // Filter search global (q)
+        if ($request->filled('q')) {
+            $q = $request->q;
+            $query->where(function($qBuilder) use ($q) {
+                $qBuilder->where('nama_perangkat', 'like', "%{$q}%")
+                        ->orWhere('serial_number', 'like', "%{$q}%")
+                        ->orWhere('status', 'like', "%{$q}%")
+                        ->orWhere('lokasi_device', 'like', "%{$q}%")
+                        ->orWhere('description', 'like', "%{$q}%");
+            });
+        }
+
         $items = $query->latest()->paginate(15)->withQueryString();
 
-        // Data untuk filter dropdown
+        // Data untuk filter dropdown dan Tabs
+        $categoriesQuery = \App\Models\Category::orderBy('name');
+        if ($request->filled('gudang') && $request->gudang !== 'universal') {
+            $categoriesQuery->where('gudang', $request->gudang);
+        }
+        $categories = $categoriesQuery->get();
+
         $statuses = Item::select('status')->distinct()->whereNotNull('status')->pluck('status');
         $lokasis = Item::select('lokasi_device')->distinct()->whereNotNull('lokasi_device')->pluck('lokasi_device');
 
-        return view('items.index', compact('items', 'statuses', 'lokasis'));
+        $activeGudang = $request->get('gudang', 'universal');
+
+        return view('items.index', compact('items', 'statuses', 'lokasis', 'categories', 'activeGudang'));
     }
 
     // API search realtime
@@ -41,30 +71,35 @@ class ItemController extends Controller
             return response()->json([]);
         }
 
-        $items = Item::where('nama_perangkat', 'like', "%{$q}%")
+        $items = Item::with('category')
+            ->where('nama_perangkat', 'like', "%{$q}%")
             ->orWhere('serial_number', 'like', "%{$q}%")
             ->orWhere('status', 'like', "%{$q}%")
             ->orWhere('lokasi_device', 'like', "%{$q}%")
             ->take(8)
-            ->get(['id', 'nama_perangkat', 'serial_number', 'status', 'lokasi_device']);
+            ->get(['id', 'nama_perangkat', 'serial_number', 'status', 'lokasi_device', 'category_id']);
 
         return response()->json($items);
     }
 
-    public function create()
+    public function create(Request $request)
     {
-        return view('items.create');
+        $activeGudang = $request->get('gudang', 'jakarta');
+        $categories = \App\Models\Category::where('gudang', $activeGudang)->orderBy('name')->get();
+        return view('items.create', compact('categories', 'activeGudang'));
     }
 
     public function store(Request $request)
     {
         $data = $request->validate([
             'nama_perangkat' => 'required|string|max:255',
+            'gudang' => 'required|in:jakarta,bali,sfp',
             'serial_number' => 'required|string|unique:items,serial_number|max:255',
             'status' => 'required|string',
             'status_barang' => 'nullable|string',
             'os_version' => 'nullable|string',
             'lokasi_device' => 'nullable|string',
+            'category_id' => 'nullable|exists:categories,id',
             'description' => 'nullable|string',
         ]);
 
@@ -77,13 +112,14 @@ class ItemController extends Controller
             'link' => route('items.index'),
         ]);
 
-        return redirect()->route('items.index')->with('success', 'Barang berhasil ditambahkan!');
+        return redirect()->route('items.index', ['gudang' => $item->gudang])->with('success', 'Barang berhasil ditambahkan!');
     }
 
     // Edit form
     public function edit(Item $item)
     {
-        return view('items.edit', compact('item'));
+        $categories = \App\Models\Category::where('gudang', $item->gudang)->orderBy('name')->get();
+        return view('items.edit', compact('item', 'categories'));
     }
 
     // Update
@@ -91,17 +127,19 @@ class ItemController extends Controller
     {
         $data = $request->validate([
             'nama_perangkat' => 'required|string|max:255',
+            'gudang' => 'required|in:jakarta,bali,sfp',
             'serial_number' => 'required|string|max:255|unique:items,serial_number,' . $item->id,
             'status' => 'required|string',
             'status_barang' => 'nullable|string',
             'os_version' => 'nullable|string',
             'lokasi_device' => 'nullable|string',
+            'category_id' => 'nullable|exists:categories,id',
             'description' => 'nullable|string',
         ]);
 
         $item->update($data);
 
-        return redirect()->route('items.index')->with('success', 'Barang berhasil diupdate!');
+        return redirect()->route('items.index', ['gudang' => $item->gudang])->with('success', 'Barang berhasil diupdate!');
     }
 
     public function destroy(Item $item)

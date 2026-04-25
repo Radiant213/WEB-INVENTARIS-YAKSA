@@ -2,114 +2,77 @@
     <img src="public/images/logo.png" alt="Yaksa Logo" width="120" style="margin-bottom: 20px;">
     <h1>Inventaris Yaksa 📦</h1>
     <p>Sistem Manajemen Inventaris Modern & Real-Time untuk PT Yaksa Ersada Solusindo</p>
+    <p><strong>Didevelop oleh: Galang Ma'ruf Sherinian</strong></p>
 </div>
 
 ---
 
 ## 🌟 Tentang Proyek
-**Inventaris Yaksa** adalah aplikasi berbasis web yang dirancang khusus untuk mempermudah pemantauan, pencatatan, dan manajemen sirkulasi barang/hardware. Sistem ini dilengkapi dengan antarmuka bergaya *glassmorphism* modern, sistem notifikasi *real-time*, dan pencatatan riwayat transaksi (*log*) barang secara detail.
+**Inventaris Yaksa** adalah aplikasi berbasis web berskala *enterprise* yang saya kembangkan khusus untuk **PT Yaksa Ersada Solusindo**. Tujuan utama dari proyek ini adalah digitalisasi pemantauan, pencatatan, dan manajemen sirkulasi barang/hardware (IT Asset Management). Sistem ini dirancang dengan antarmuka bergaya *glassmorphism* modern, sistem notifikasi *real-time*, keamanan autentikasi via OTP (One-Time Password) ke email, dan pencatatan riwayat transaksi secara komprehensif.
+
+## 🎯 Pencapaian Proyek (Portfolio Highlights)
+- 🚀 Berhasil mendeploy sistem dari tahap perancangan lokal (development) hingga *Live Production* di cPanel Hosting.
+- 🔐 Mengintegrasikan sistem Autentikasi canggih dengan OTP ke Email Gmail (menggunakan SMTP dan Mailtrap) untuk keamanan ekstra saat registrasi dan lupa password.
+- 📊 Membangun sistem Export Laporan Excel terotomatisasi dengan kustomisasi gaya (styling) sesuai format operasional perusahaan.
+- ⚡ Mengoptimalkan User Experience (UX) dengan *single-page feel* menggunakan Alpine.js tanpa mengorbankan performa Laravel.
 
 ## ✨ Fitur Utama
-- 📊 **Dashboard Interaktif**: Ringkasan data perangkat (Total, Tersedia, Keluar, RMA) secara *real-time*.
-- 📦 **Master Barang**: CRUD data inventory secara lengkap berserta pencarian instan dan filter multi-status.
-- 🔄 **Log Transaksi Terintegrasi**: Catat barang masuk dan keluar langsung dari *Master Barang* melalui fitur *Pop-up Modal* yang dinamis.
-- 👨‍💻 **Role-Based Access Control (RBAC)**: Batasan hak akses terstruktur (`Superadmin`, `Admin`, dan `User`).
-- 🔔 **Sistem Notifikasi**: Pemberitahuan setiap ada pergerakan barang atau penambahan item baru.
-- 📄 **Export Excel Otomatis**: Format Excel yang sudah di-styling (Auto-filter, warna baris, *freeze pane*) mengikuti template *Google Sheets* standar perusahaan.
-- 🎨 **Modern UI/UX**: Didukung oleh Tailwind CSS v4, Alpine.js, dan SweetAlert2 untuk pengalaman pengguna setara aplikasi *Enterprise Native*.
+- **Autentikasi Aman:** Login, Register dengan OTP Email, dan Forgot Password.
+- **Dashboard Interaktif**: Ringkasan data perangkat (Total, Tersedia, Keluar, RMA) secara visual.
+- **Master Barang**: Manajemen (CRUD) data inventory secara lengkap berserta pencarian instan dan filter multi-status.
+- **Log Transaksi Terintegrasi**: Catat barang masuk dan keluar langsung dari *Master Barang* melalui fitur *Pop-up Modal* dinamis.
+- **Role-Based Access Control (RBAC)**: Batasan hak akses terstruktur (`Superadmin`, `Admin`, dan `User`).
+- **Sistem Notifikasi**: Pemberitahuan *real-time* setiap ada pergerakan barang atau penambahan item baru.
+- **Export Excel Otomatis**: Format laporan rapi, di-styling khusus.
 
-## 🛠️ Teknologi yang Digunakan
-- **Backend:** Laravel 11.x, PHP 8.2+
-- **Frontend:** HTML5, Alpine.js (Reaktivitas), Tailwind CSS v4 (Styling)
+## 🛠️ Stack Teknologi
+- **Backend:** Laravel 11.x, PHP 8.3
+- **Frontend:** HTML5, Alpine.js, Tailwind CSS v4
 - **Database:** MySQL
-- **Tooling/Library:** Vite, Laravel Excel (Maatwebsite), SweetAlert2
+- **Email Delivery:** SMTP Gmail & Mailtrap API
+- **Deployment:** Shared Hosting (cPanel)
 
 ---
 
-## ⚙️ Persyaratan Sistem (System Requirements)
-Sebelum melakukan instalasi, pastikan sistem Anda telah memiliki:
-- PHP >= 8.2
-- Composer
-- Node.js & NPM
-- MySQL / MariaDB Database Server
+## 🚀 Panduan Instalasi (Development Lokal)
 
----
+1. **Clone repositori ini / Ekstrak ZIP:**
+   Arahkan ke direktori server lokal Anda (misal: `C:\laragon\www\inventaris-yaksa`).
 
-## 🚀 Panduan Instalasi (Development)
-
-Ikuti langkah-langkah di bawah ini untuk menjalankan proyek ini di *local machine* (misal: Laragon, XAMPP, Valet):
-
-1. **Clone repositori ini** (jika menggunakan Git) atau Ekstrak file ZIP proyek ke direktori server lokal Anda (misal: `C:\laragon\www\inventaris-yaksa`).
-
-2. **Buka terminal** di dalam folder proyek tersebut, arahkan path-nya (contoh: `cd C:\laragon\www\inventaris-yaksa`).
-
-3. **Install dependensi PHP dan Node.js:**
+2. **Install dependensi:**
    ```bash
    composer install
    npm install
    ```
 
-4. **Siapkan Environment Variables:**
-   Duplikat file `.env.example` lalu ubah menjadi `.env`.
-   ```bash
-   cp .env.example .env
-   ```
-   Atur koneksi database Anda di file `.env`:
-   ```env
-   DB_CONNECTION=mysql
-   DB_HOST=127.0.0.1
-   DB_PORT=3306
-   DB_DATABASE=nama_database_anda
-   DB_USERNAME=root
-   DB_PASSWORD=
-   ```
+3. **Environment Setup:**
+   Duplikat file `.env.example` menjadi `.env`. Sesuaikan kredensial Database dan SMTP (Mailtrap/Gmail).
 
-5. **Generate App Key:**
+4. **Setup Database & Kunci Aplikasi:**
    ```bash
    php artisan key:generate
-   ```
-
-6. **Migrasi Database & Seeding (Penting):**
-   Ini akan membuat struktur tabel dan mengisi data awal (akun login).
-   ```bash
    php artisan migrate:fresh --seed
    ```
 
-7. **Compile Assets Frontend:**
+5. **Jalankan Aplikasi:**
    ```bash
    npm run build
-   # Atau jika sedang mendevelop: npm run dev
-   ```
-
-8. **Jalankan Aplikasi:**
-   ```bash
    php artisan serve
    ```
-   Akses aplikasi pada browser melalui url: `http://localhost:8000`
+   Akses di: `http://localhost:8000`
 
 ---
 
-## 🔐 Akun Akses Default (Role)
-
-Setelah menjalankan *seeder*, Anda bisa masuk menggunakan akun berikut:
+## 🔐 Akun Dummy (Hasil Seeder)
 
 | Akses/Role | Alamat Email | Password | Keterangan |
 | :--- | :--- | :--- | :--- |
-| **Super Admin** | `superadmin@gmail.com` | `password` | Kendali Penuh (Termasuk Management User) |
-| **Admin** | `admin@gmail.com` | `password` | Kendali Operasional Inventaris |
-| **User Biasa** | `user1@gmail.com` | `password` | Hanya *Read-Only* |
-
-> *Pastikan segera mengubah password default setelah sistem di-*deploy* ke ranah produksi.*
-
----
-
-## 📄 Ringkasan Penyesuaian Kustom (Custom Log)
-- **Fitur SweetAlert2** telah ditambahkan khusus di `Master Barang`, `Log Transaksi`, dan `User Management` untuk memblokir metode penghapusan tidak sengaja.
-- **Logika Expandable Row** menggunakan tag `<tbody>` spesifik untuk scope per-item, mengatasi isu rendering dari Alpine.js di HTML struktur Table.
-- **Laporan Excel** menggunakan Styling Custom (Header merah '#DC2626', teks putih tebal) yang didefinisikan pada `App\Exports\ItemsExport`.
+| **Super Admin** | `superadmin@gmail.com` | `password` | Kendali Penuh (Master Data & User) |
+| **Admin** | `admin@gmail.com` | `password` | Manajemen Barang & Log |
+| **User** | `user1@gmail.com` | `password` | View-only |
 
 ---
 
 <div align="center">
-    <strong>Dibuat dengan ❤️ untuk PT Yaksa Ersada Solusindo</strong>
+    <strong>Portofolio Web Development © 2026</strong>
 </div>

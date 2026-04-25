@@ -10,15 +10,45 @@ use Illuminate\Support\Facades\Auth;
 
 class TransactionController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $transactions = Transaction::with(['item', 'user'])
-            ->latest('tanggal_transaksi')
-            ->paginate(15);
-        
-        $items = Item::orderBy('nama_perangkat')->get();
+        $query = Transaction::with(['item.category', 'user']);
 
-        return view('transactions.index', compact('transactions', 'items'));
+        // Filter gudang via item
+        if ($request->filled('gudang') && $request->gudang !== 'universal') {
+            $query->whereHas('item', function ($q) use ($request) {
+                $q->where('gudang', $request->gudang);
+            });
+        }
+
+        // Filter tipe transaksi
+        if ($request->filled('tipe') && $request->tipe !== 'all') {
+            $query->where('tipe_transaksi', $request->tipe);
+        }
+
+        // Filter kategori barang
+        if ($request->filled('category_id') && $request->category_id !== 'all') {
+            $query->whereHas('item', function ($q) use ($request) {
+                $q->where('category_id', $request->category_id);
+            });
+        }
+
+        $transactions = $query->latest('tanggal_transaksi')->paginate(15)->withQueryString();
+        
+        $itemsQuery = Item::orderBy('nama_perangkat');
+        $categoriesQuery = \App\Models\Category::orderBy('name');
+        
+        if ($request->filled('gudang') && $request->gudang !== 'universal') {
+            $itemsQuery->where('gudang', $request->gudang);
+            $categoriesQuery->where('gudang', $request->gudang);
+        }
+        
+        $items = $itemsQuery->get();
+        $categories = $categoriesQuery->get();
+        
+        $activeGudang = $request->get('gudang', 'universal');
+
+        return view('transactions.index', compact('transactions', 'items', 'categories', 'activeGudang'));
     }
 
     public function store(Request $request)

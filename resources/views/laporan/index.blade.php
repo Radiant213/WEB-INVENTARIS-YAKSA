@@ -5,7 +5,7 @@
     <div class="flex justify-between items-center mb-6"
          x-show="loaded" x-transition:enter="transition ease-out duration-500" x-transition:enter-start="opacity-0 translate-y-4" x-transition:enter-end="opacity-100 translate-y-0">
         <div>
-            <h1 class="text-2xl font-bold text-gray-900">Laporan</h1>
+            <h1 class="text-2xl font-bold text-gray-900">Laporan {{ $activeGudang == 'universal' ? 'Semua Gudang' : 'Gudang ' . ucfirst($activeGudang) }}</h1>
             <p class="text-sm text-gray-500 mt-1">Ringkasan inventaris dan riwayat transaksi barang.</p>
         </div>
         <a href="{{ route('laporan.export') }}" class="group px-4 py-2.5 bg-gradient-to-r from-green-600 to-emerald-500 text-white rounded-xl text-sm font-semibold hover:from-green-500 hover:to-emerald-400 hover:shadow-lg hover:shadow-green-500/25 transition-all duration-200 active:scale-95 no-underline">
@@ -17,12 +17,14 @@
     </div>
 
     <!-- Stat Cards -->
-    <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-6"
+    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 mb-6"
          x-show="loaded" x-transition:enter="transition ease-out duration-500 delay-100" x-transition:enter-start="opacity-0 translate-y-6" x-transition:enter-end="opacity-100 translate-y-0">
         <div class="bg-white rounded-xl border border-gray-200 p-4 text-center"><p class="text-xs text-gray-400 uppercase font-semibold">Total</p><p class="text-2xl font-bold text-gray-900 mt-1">{{ $totalItems }}</p></div>
+        <div class="bg-white rounded-xl border border-gray-200 p-4 text-center"><p class="text-xs text-gray-400 uppercase font-semibold">Masuk</p><p class="text-2xl font-bold text-blue-600 mt-1">{{ $masukItems }}</p></div>
         <div class="bg-white rounded-xl border border-gray-200 p-4 text-center"><p class="text-xs text-gray-400 uppercase font-semibold">Ready</p><p class="text-2xl font-bold text-emerald-600 mt-1">{{ $readyItems }}</p></div>
         <div class="bg-white rounded-xl border border-gray-200 p-4 text-center"><p class="text-xs text-gray-400 uppercase font-semibold">Keluar</p><p class="text-2xl font-bold text-amber-600 mt-1">{{ $keluarItems }}</p></div>
-        <div class="bg-white rounded-xl border border-gray-200 p-4 text-center"><p class="text-xs text-gray-400 uppercase font-semibold">RMA</p><p class="text-2xl font-bold text-red-600 mt-1">{{ $rmaItems }}</p></div>
+        <div class="bg-white rounded-xl border border-gray-200 p-4 text-center"><p class="text-xs text-gray-400 uppercase font-semibold">RMA</p><p class="text-2xl font-bold text-purple-600 mt-1">{{ $rmaItems }}</p></div>
+        <div class="bg-white rounded-xl border border-gray-200 p-4 text-center"><p class="text-xs text-gray-400 uppercase font-semibold">Rusak</p><p class="text-2xl font-bold text-red-600 mt-1">{{ $rusakItems }}</p></div>
     </div>
 
     <!-- Tabs -->
@@ -54,7 +56,8 @@
                         <td class="px-6 py-3">
                             @if($item->status == 'Ready')<span class="px-2 py-0.5 rounded-md text-xs font-semibold bg-emerald-50 text-emerald-700">Ready</span>
                             @elseif($item->status == 'Barang Keluar')<span class="px-2 py-0.5 rounded-md text-xs font-semibold bg-amber-50 text-amber-700">Keluar</span>
-                            @elseif($item->status == 'Barang RMA')<span class="px-2 py-0.5 rounded-md text-xs font-semibold bg-red-50 text-red-700">RMA</span>
+                            @elseif($item->status == 'Barang RMA')<span class="px-2 py-0.5 rounded-md text-xs font-semibold bg-purple-50 text-purple-700">RMA</span>
+                            @elseif($item->status == 'Barang Rusak')<span class="px-2 py-0.5 rounded-md text-xs font-semibold bg-red-50 text-red-700">Rusak</span>
                             @else<span class="px-2 py-0.5 rounded-md text-xs font-semibold bg-gray-50 text-gray-700">{{ $item->status }}</span>
                             @endif
                         </td>
