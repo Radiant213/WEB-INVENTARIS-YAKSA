@@ -1,0 +1,155 @@
+Nama Perangkat,Serial Number,Status,Status Barang,Barang Masuk Pengirim,Barang Keluar Penerima,Tanggal Menerima,Tanggal Pengiriman,OS Version,Lokasi Device,Description
+FortiADC-200F,FAD2HFTA19000224,Barang Keluar,Demo,Ex BPD Bali,PT SMI (Warehouse),16/03/2025,18/09/2025,,Delivered,Pickup Expedisi Cibitung
+FortiADC-300F,FAD3HFTA20000090,Ready,Demo,Warehouse SMI,-,,15/01/2024,,Gudang ATS,
+FortiADC-220F, FAD2AFTA21000063,Barang Keluar,Demo,Ex BPD Bali,Warehouse SMI Cibitung,16/03/2025,10/09/2025,,Delivered,Pickup Expedisi Cibitung
+FortiAnalyzer-1000G,FAZ1KGT924000248,Barang RMA,DRMA Bank IBK,-,-,12/12/2024,,,Gudang ATS,
+FortiAnalyzer-150G,FAZ15GT222000116,Barang Keluar,,DANA,SMI,21/05/2024,19/04/2024,7.2.4,Delivered,Di pickup expedisi SMI
+FortiAnalyzer-200F,FL-2HFTB18000189,Barang Keluar,Demo,-,Warehouse SMI Cibitung,,31/10/2024,6.4.9,Delivered,Pickup Expedisi ke gudang Cibitung
+FortiAnalyzer-200F,FL-2HFTB20000929,Ready,Demo,Warehouse SMI,,15/04/2026,,7.0.15,Gudang ATS,
+FortiAP-221E,FP221E5521084545,Barang Keluar,,PT Bank Mestika Dharma Medan,PT SMI (Warehouse),07/03/2024,26/02/2024,,Delivered,Sudah di pick-up expedisi SMI tgl 7 Maret 2024
+FortiAP-231F,FP231FTF2309DZTL,Ready,Demo,-,,05/09/2024,,,Gudang ATS,
+FortiAP-233G,FP233GTF23012951,Barang Keluar,Demo,MSInfokom,Warehouse SMI Cibitung,14/08/2024,10/03/2025,-,Gudang ATS,Pickup Expedisi SMi CIbitung
+FortiAP-U433F,PU433FTH21003211,Barang Keluar,,PT Bank Mestika Dharma Medan,PT SMI APL - Mas Yoga,18/03/2024,26/02/2024,,Delivered,Pick-up Gojek kirim ke SMI APL (Yoga)
+FortiAP-U433F-NFR,PU433FTH21001837,Barang Keluar,Demo,MSInfokom,Warehouse SMI Cibitung,14/08/2024,10/03/2025,-,Gudang ATS,Pickup Expedisi SMi CIbitung
+FortiAunthenticator-300F,FAC3HFT921000173,Ready,Demo,Ex BPD Bali,-,,,6.6.9,Gudang ATS,
+FortiGate-100F,FG100FTK23000055,Barang Keluar,,-,Astra International,,12/02/2024,,Delivered,
+FortiGate-100F,FG100FTK20013690,Barang Keluar,,-,PT Altros  Teknologi,15/08/2024,17/10/2024,7.2.8,Delivered,Picup Blu bird Ke Altros Teknologi
+FortiGate-101F,FG101FTK21023811,Barang Keluar,,-,PT Graha Informatika Nusantara (GRATIKA),,15/07/2024,7.2.7,Delivered,
+FortiGate-101F,FG101FTK21024034,Barang Keluar,Demo,,Warehouse SMI Cibitung,21/11/2025,06/01/2026,7.4.8,Delivered,Pickup SMI Cibitung
+FortiGate-101F,FG101FTK21029291,Ready,Forsale,,,,,,Gudang ATS,
+FortiGate-101F,FG101FTK21029008,Ready,Forsale,PT. Asuransi Perisai Listrik Nasional,,09/01/2026,20/11/2025,7.4.9,Gudang ATS,
+FortiGate-101F,FG101FTK21029386,Ready,Forsale,,,,,,Gudang ATS,
+FortiGate-101F,FG101FTK21029181,Ready,Forsale,,,,,,Gudang ATS,
+FortiGate-101F,FG101FTK19002915,Ready,Demo,,,21/11/2025,,7.4.8,Gudang ATS,
+FortiGate-1101E,FG10E1TB22902125,Ready,Forsale,-,-,,,,Gudang ATS,
+FortiGate-1500D,FG1K5D3I14801701,Ready,Demo,,,,,,Gudang ATS,
+FortiGate-1500D,FG1K5D3I16800418,Ready,Demo,-,-,,,,Gudang ATS,
+FortiGate-1500D,FG1K5D3I16801349,Ready,Demo,-,-,,,,Gudang ATS,
+FortiGate-1800F,FG180FTK23900832,Barang RMA,RMA,,,,,,Gudang ATS,
+FortiGate-1800F-NFR,FG180FTK20900882,Barang Keluar,Demo,Menara Sahid,Warehouse SMI Cibitung,11/07/2025,18/09/2025,7.4.8,Delivered,Pickup Expedisi SMi CIbitung
+FortiGate-1800F-NFR,FG180FTK20901042,Barang Keluar,,Mastersytem,MSInfokom,28/08/2024,1/11/2024,7.2.9,Delivered,Diambil msinfokom
+FortiGate-2000E,FGT2KE3917900004,Barang RMA,RMA PT Jalin,Warehouse SMI,,03/06/2025,,7.4.7,Gudang YES-Jkt,PT Jalin - DRMA 24x7x1
+FortiGate-2000E,FGT2KETB23900020,Barang RMA,RMA PT Jalin,Warehouse SMI,,03/06/2025,,7.4.7,Gudang YES-Jkt,PT Jalin - DRMA 24x7x1
+FortiGate-2000E,FGT2KETB19900306,Barang RMA,RMA PT Jalin,-,-,,,,Gudang ATS,PT Jalin - DRMA 24x7x1 ( Hardware Problem )
+Fortigate 3000D-R,FGT3KDT421800038,Ready,Demo,Warehouse SMI,,30/04/2025,,7.2.11,Gudang ATS,
+FortiGate-200F-NFR,FG200FT922937371,Barang Keluar,,-,PT Altros  Teknologi, 16/02/2024,,,Delivered,
+FortiGate-200F-NFR,FG200FT922905335,Barang Keluar,,PT Mitra Integrasi Informatika,Warehouse SMI Cibitung,22/02/2024,15/02/2024,7.2.7,Delivered,Di pick-up SMI
+FortiGate-200F-NFR,FG200FT922951719,Ready,Demo,Warehouse SMI,-,01/04/2026,18/02/2026,7.4.11,Gudang YES-Jkt,
+FortiGate-201E,FG201ETK19907162,Barang Keluar,Forsale,,PT. Negitec,,05/02/2026,,Delivered,
+FortiGate-201E,FG201E4Q17904460,Ready,Forsale,,,,,,Gudang ATS,
+FortiGate-201E,FG201ETK19902008,Barang Keluar,Forsale,,PT. Negitec,,05/02/2026,,Delivered,
+FortiGate-201E,FG201ETK18903314,Barang Keluar,Forsale,,PT. Negitec,,05/02/2026,,Delivered,
+FortiGate-201E,FG201ETK19900426,Barang Keluar,,,PT. Negitec,,05/02/2026,,Delivered,
+FortiGate-201F,FG201FT923900071,Barang Keluar,Forsale,,PT. Negitec,,05/02/2026,,Delivered,
+FortiGate-201F,FG201FT922916440,Barang Keluar,Forsale,,PT. Negitec,,05/02/2026,,Delivered,
+FortiGate-201F,FG201FT923907687,Barang Keluar,Forsale,SMI (Expedisi),Bank BPD Banten,06/01/2025,04/03/2026,7.2.11,Delivered,Pickup Bluebird ke Bank BPD Banten
+FortiGate-201F,FG201FT923907680,Ready,Forsale,SMI (Expedisi),,06/01/2025,,,Gudang ATS,
+FortiGate-201F,FG201FT923907693,Barang Keluar,Forsale,SMI (Expedisi),Bank BPD Banten,06/01/2025,04/03/2026,7.2.11,Delivered,Pickup Bluebird ke Bank BPD Banten
+FortiGate-201F,FG201FT923907696,Ready,Forsale,SMI (Expedisi),,06/01/2025,,,Gudang ATS,
+FortiGate-201F,FG201FT923907691,Ready,Forsale,SMI (Expedisi),,06/01/2025,,,Gudang ATS,
+Fortigate 200F,FG200FT925901668,Ready,Demo,,,11/11/2025,,7.4.8,Gudang ATS,
+Fortigate 200F,FG200FT922926950,Ready,RMA,Warehouse SMI,,01/04/2026,,7.4.11,Gudang YES-Jkt,
+Fortigate 200F,FG200FT922937366,Ready,Demo,Warehouse SMI,,01/04/2026,,7.4.11,Gudang YES-Jkt,
+,,,,,,,,,,
+Fortigate 201G,FG2H1GT925901661,Ready,Demo,,,04/10/2025,,,Gudang ATS,
+Fortigate 201G,FG2H1GT925903591,Ready,Demo,,,11/02/2026,,7.4.11,Gudang ATS,
+Fortigate 201G,FG2H1GT925903575,Ready,Demo,,,11/02/2026,,7.4.11,Gudang ATS,
+FortiGate-2500E,FG2K5E3916900126,Barang Keluar,Demo,,PT Aplikas Service Pesone,,13/11/2025,7.0.12,Delivered,
+FortiGate-2500E,FG2K5ETB20900091,Ready,Demo,,,,,,Gudang ATS,
+Fortigate-400F,"
+FG4H0FT922901502",Barang Keluar,Demo,Musa SMI,Warehouse SMI Cibitung,11/9/2025,18/09/2025,7.2.8,Delivered,Pickup Expedisi SMi CIbitung
+FortiGate-400F,FG4H0FT922901935,Barang Keluar,Demo,Ex BPD Bali,Warehouse SMI Cibitung,24/05/2025,19/02/2026,7.2.10,Delivered,Pickup Expedisi SMi CIbitung
+FortiGate-400F-R,FG4H0FT923904332,Barang RMA,DRMA MyBank,,,,,,Gudang ATS,
+FortiGate-400F-R,FG4H0FT924900026,Barang Keluar,,Warehouse SMI,PT SMI,20/12/2024,18/02/2025,7.2.10,Delivered,Dipakai Di Astra
+FortiGate-400F-R,FG4H0FT923915234,Barang Keluar,,Warehouse SMI,PT SMI,20/12/2024,18/02/2025,7.2.10,Delivered,Pickup Bluebird SMI ( Mba Yudith ) Ke Boulevard Gajahmada
+FortiGate-400F-R,FG4H0FT923911803,Ready,,,,20/01/2026,,,Gudang YES-Jkt,
+FortiGate-400F-R,FG4H0FT924901671,Ready,,,,20/01/2026,,,Gudang YES-Jkt,
+Fortigate-30G,FGT30GTK24005109,Ready,Demo,Warehouse SMI,Warehouse SMI,05/02/2026,06/03/2025,7.4.11,Gudang ATS,
+Fortigate-50G,FGT50GTK24004547,Ready,Demo,-,-,16/03/2026,13/02/2026,7.4.11,Gudang ATS,
+FortiGate-401F,FG4H1FTK922901077,Ready,Forsale,Cust. Global Digital Niaga,-,12/05/2024,,7.4.3,Gudang ATS,
+FortiGate-401F,FG4H1FTK922901477,Ready,Forsale,Cust. Global Digital Niaga,-,12/05/2024,,7.4.3,Gudang ATS,
+FortiGate-401F,FG4H1FTK922901481,Ready,Forsale,Cust. Global Digital Niaga,-,12/05/2024,,7.4.3,Gudang ATS,
+FortiGate-40F NFR,FGT40FTK2309EG1W,Barang Keluar,Demo,PT Graha Infrormatika Nusantara,Warehouse SMI,16/07/2025,31/06/2025,7.4.8,Delivered,Pickup SMI Cibitung
+FortiGate-40F NFR,FG40FTK2309EM6G,Barang Keluar,Demo,-,,20/09/2025,22/12/2025,7.4.3,Delivered,Dipinjam PT Gratika Mas katon
+FortiGate-40F,FGT40FTK2209FEBW,Ready,,-,-,,,,Delivered,
+FortiGate-40F,FGT40FTK24066024,Ready,Forsale,-,PT Master System Infotama,9/9/2025,07/07/2028,7.4.8,Gudang ATS,Dipinjam Mastersystem untuk Home Credit INdonesia
+FortiGate-40F,FGT40FTK24066144,Ready,Forsale,-,-,12/10/2024,,,Gudang ATS,
+FortiGate-40F,FGT40FTK24066201,Ready,Forsale,-,-,12/10/2024,,,Gudang ATS,
+FortiGate-40F,FGT40FTK24066295,Barang Keluar,Forsale,-,Yes Bali ( BPD Bali),12/10/2024,21/02/2025,,Yes Bali,Mawar 7 
+FortiGate-40F,FGT40FTK24068268,Ready,Forsale,-,PT Master System Infotama,9/9/2025,07/07/2028,7.4.8,Gudang ATS,Dipinjam Mastersystem untuk Home Credit INdonesia
+FortiGate-40F,FGT40FTK24068269,Ready,Forsale,-,-,12/10/2024,,,Gudang ATS,
+FortiGate-40F,FGT40FTK24066041,Barang Keluar,Forsale,-,Yes Bali ( BPD Bali),12/10/2024,21/02/2025,,Yes Bali,Mawar 7 
+FortiGate-40F,FGT40FTK24066507,Barang Keluar,Forsale,-,Yes Bali ( BPD Bali),12/10/2024,21/02/2025,,Yes Bali,Mawar 7 
+FortiGate-40F,FGT40FTK24066545,Barang Keluar,Forsale,-,Yes Bali ( BPD Bali),12/10/2024,21/02/2025,,Yes Bali,Mawar 7 
+FortiGate-40F,FGT40FTK24066037,Barang Keluar,Forsale,-,Yes Bali ( BPD Bali),12/10/2024,21/02/2025,,Yes Bali,Mawar 7 
+FortiGate-40F-3G4G-NFR,FG40FITK22010263,Barang Keluar,Demo,Ex BPD Bali,-,19/08/2025,19/08/2025,7.2.11,Gudang ATS,
+FortiGate-40F-3G4G-NFR,FG40FITK22011209,Ready,Demo,Ex BPD Bali,-,11/09/2025,10/05/2025,7.4.8,Gudang ATS,
+FortiGate-40F-NFR,FGT40FTK2309FF90,Milik Internal,,,,,,7.4.3,Gudang ATS,Milik ATS Group
+FortiGate-40F-NFR,FGT40FTK2309FFQ2,Milik Internal,,,,,22/04/2025,7.4.3,Gudang ATS,Milik ATS Group
+FortiGate-40F-NFR,FGT40FTK2309F53M,Digunakan Internal,,,,,,,Yes Bali ( Mawar 7 ),Mawar 7 
+FortiGate-40F-NFR,FGT40FTK2309E689,Barang Keluar,Demo,,Warehouse SMI Cibitung,22/11/2025,06/01/2026,7.4.8,Delivered,Pickup SMI Cibitung
+FortiGate-600C,FG600C3913800329,Ready,Demo,-,-,,,,Gudang ATS,
+FortiGate-600E,FG6H1FTB20903394,Barang Keluar,,,,,,,Delivered,
+FortiGate-600F,FG6H0FTB23906481,Barang Keluar,Demo,Ex BPD Bali,Warehouse SMI Cibitung,14/01/2025,10/03/2025,7.2.10,Delivered,Pickup Expedisi SMi CIbitung
+FortiGate-600F,FG6H0FTB23904120,Barang Keluar,Demo,PT Oto Mulitarta,Warehouse SMI,06/08/2025,10/09/2025,7.2.11,Delivered,Pickup Expedisi SMi CIbitung
+FortiGate-600F,FG6H0FTB23903936,Barang Keluar,Demo,PT Oto Mulitarta,Warehouse SMI Cibitung,19/11/2025,12/01/2026,7.4.8,Delivered,Pickup Expedisi SMi CIbitung
+FortiGate-600F,FG6H0FTB22902967,Barang Keluar,Demo,,PT SMI (Warehouse),28/05/2025,04/06/2025,7.4.7,Delivered,Pick Up Warehouse SMI Cibitung
+FortiGate-601E,FG6H1ETB20903394,Ready,Demo,-,-,,,7.2.10,Gudang ATS,
+FortiGate-60F-NFR,FGT60FTK2309A3L1,Barang Keluar,Demo,BIT,Warehouse SMI Cibitung,,10/03/2025,7.2.8,Delivered,Pickup Expedisi SMi CIbitung
+FortiGate-60F-NFR,FGT60FTK22076491,Ready,Demo,Sinergy Informasi Pratama,,24/02/2025,,7.4.4,Gudang ATS,
+FortiGate-60F-NFR,FGT60FTK22077531,Ready,Demo,Sinergy Informasi Pratama,,24/02/2025,,7.4.4,Gudang ATS,
+FortiGate-61F,FGT61FTK22058179,Ready,Demo,PT NTT Indonesia,-,1/8/2024,,7.2.8,Gudang ATS,
+FortiGate-70F,FGT70FTK22051186,Barang Keluar,,-,PT SMI,,24/10/2024,7.2.8,Delivered,Picup SMI ( Mba Yudit )
+FortiGate-70F,FGT70FTK22040355,Barang Keluar,POC Bpd DIY,,Warehouse SMI Cibitung,7/7/2025,18/09/2025,7.2.11,Delivered,Pickup Expedisi SMI Cibitung
+FortiGate-71F,FGT71FTK22001139,Ready,,,,,,,Gudang ATS,
+FortiGate-800C,FG800C3914802801,Ready,Demo,-,-,,,,Gudang ATS,
+FortiGate-80C,FGT80C3913611532,Barang Keluar,,PT Synex Metrodata Indonesia,-,,12/01/2024,,Gudang ATS,
+FortiGate-81F,FGT81FTK21004609,Ready,Demo,-,-,,,7.2.7,Gudang ATS,
+FortiGate-81F,"FGT81FTK21001269
+",Barang Keluar,Forsale,,PT Citroes Cipta Caraka,,19/03/2023,,Delivered,Salemba
+FortiGate-81F,FGT81FTK23008726,Barang Keluar,Forsale,,PT Citroes Cipta Caraka,,19/03/2024,,Delivered,Salemba
+FortiGate-81F,FGT81FTK22009291,Barang Keluar,Forsale,,PT Citroes Cipta Caraka,,19/03/2025,,Delivered,Salemba
+FortiGate-81F,FGT81FTK22009589,Ready,Forsale,,,,,,Gudang ATS,
+FortiGate-81F,"FGT81FTK22008929
+",Ready,Forsale,,,,,,Gudang ATS,
+FortiGate-81F,FGT81FTK22008406,Ready,Forsale,,,,,,Gudang ATS,
+FortiGate-81F,FGT81FTK23008583,Ready,Forsale,,,,,,Gudang ATS,
+FortiGate-900D,FG900D3916800145,Ready,Demo,,,,,,Gudang ATS,
+FortiGate-900D,FG900D3916801035,Ready,Demo,-,-,,,,Gudang ATS,PSU Rusak
+FortiMail-400F,FE400FT922000132,Barang Keluar,,Ex BPD Bali,Penang Bistro - Central Park Mail,20/06/2024,01/06/2024,7.4.2,Delivered,Pickup Grab ke Penang Bistro
+FortiMail-400F,FE400FT921000097,Ready,Demo,Snet,,3/12/2024,,6.4.8,Gudang ATS,
+FortiMail-400F,FE400FT924000111,Barang Keluar,Demo,-,,21/10/2025,07/11/2025,7.6.4,Gudang ATS,Diinjam  PT Aplikas Servis Pesona
+FortiManager-200F,FMG2HFTB19900465,Barang Keluar,,-,Warehouse SMI Cibitung,,31/10/2024,7.2.8,Delivered,Pickup Expedisi ke gudang Cibitung
+FortiManager-200F-R,FMG2HFTB21900075,Ready,Demo,,,,,,Gudang ATS,
+Fortinet SFP+,N6CD27W,Barang Keluar,,-,PT SMI,12/03/2024,,,Delivered,sudah di pick-up expedisi SMI
+Fortinet SFP+,N6DCHFJ,Barang Keluar,,-,PT SMI,12/03/2024,,,Delivered,sudah di pick-up expedisi SMI
+FortiProxy-400E-NFR,FPX4HETA20000129,Barang Keluar,,PT Synex Metrodata Indonesia,Warehouse SMI Cibitung,04/09/2024,10/9/2024,7.2.9,Delivered,sudah di pick-up expedisi SMI
+FortiSiem-2000F,FSM2KFT322000071,Barang Keluar,,PT Internet Pratama Indonesia,PT SMI,28/05/2024,19/08/2024,,Delivered,Diambil Mas Ihsan SMI
+FortiSwitch-108F-POE,S108FFV23027031,Ready,Demo,-,,5/10/2024,,,Gudang ATS,
+FortiSwitch-108F-POE-NFR,S108FFTV21001455,Barang Keluar,,-,Warehouse SMI Cibitung,,10/9/2024,,Delivered,pick-up expedisi SMI
+FortiSwitch-1024E,FS1E24TF24001508,Ready,,,,14/10/2025,,7.4.6,Gudang ATS,
+FortiSwitch-124E,S124EN5919003743,Barang Keluar,,BTPN Cililitan,SMI,20/03/2024,26/02/2024,7.2.7,Delivered,pick-up expedisi SMI
+FortiSwitch-124E-POE,S124EPS222015046,Barang Keluar,,BTPN Cililitan,SMI,20/03/2024,26/02/2024,7.2.7,Delivered,pick-up expedisi SMI
+FortiSwitch-124E-POE,S124EPS222015367,Barang Keluar,,BTPN Kantor Pusat,SMI,20/03/2024,26/02/2024,7.2.7,Delivered,pick-up expedisi SMI
+FortiSwitch-1048E-POE,FS1E48T423002562,Ready,Demo,,,22/04/2026,,7.4.6,Gudang ATS,
+FortiSwitch-124F-NFR,S124FNTF23011721,Barang Keluar,Demo,-,Warehouse SMI Cibitung,,10/2/2025,,Delivered,Pickup Expedisi SMi CIbitung
+FortiSwitch-148F-POE,S148FPTF21000885,Barang Keluar,,BTPN Cililitan,SMI,20/03/2024,26/02/2024,7.2.7,Delivered,pick-up expedisi SMI
+FortiSwitch-148F-POE,S148FPTF23015147,Barang Keluar,Demo,-,Warehouse SMI Cibitung,,10/3/2025,,Delivered,Pickup Expedisi SMi CIbitung
+FortiSwitch-224E,S224EPTF21007384,Barang Keluar,,-,SMI,,20/03/2024,,Delivered,pick-up expedisi SMI
+FortiSwitch 424E,S424ENTF23002609,Barang Keluar,Demo,,Warehouse SMI Cibitung,26/01/2026,16/04/2026,7.6.4,Delivered,Pickup Expedisi SMi CIbitung
+FortiWeb-1000F-NFR,FV-1KFS123000161,Barang Keluar,Demo,Ex BPD Bali,Warehouse SMI Cibitung,25/08/2025,18/09/2025,7.6.4,Delivered,Pickup Expedisi SMi CIbitung
+FortiWeb-400E,FV400ETA20000067,Barang Keluar,Demo,Sinergy Informasi Pratama,-,18/08/2025,18/08/2025,7.4.3,Delivered,Pickup Expedisi SMi CIbitung
+FortiWeb-600E,FV600ETA23900141,Barang Keluar,Demo,-,Warehouse SMI Cibitung,,18/09/2025,7.2.10,Delivered,Pickup Expedisi SMi CIbitung
+FortiWeb-400E,FV400ETA24000004,Barang RMA,RMA Bpd NTT,Sinergy Informasi Pratama,PT Sinergy Informasi Pratama,9/2/2026,13/11/2025,7.2.9,Gudang ATS,
+FortiWeb-400E,FV400ETA24000038,Barang RMA,RMA Bpd NTT,,-,,7/4/2024,7.2.9,Gudang YES-Jkt,BPD NTT - DRMA (24x7x4)
+FortiWeb-400E,,Barang Keluar,,-,PT Sinergy Informasi Pratama,09/01/2024,,,Delivered,
+FortiWeb-400F,FV400FT924000026,Barang Keluar,Demo,Ex BPD Bali,,22/02/2025,,7.2.10,Delivered,Dipakai Di Astra life
+FortiWeb-600F,FV600FT924000026,Barang RMA,RMA,Ex BPD Bali,,25/08/2025,,7.4.7,Gudang ATS,
+FortiWeb-600F,FV600FT923000089,Barang Keluar,Demo,Ex BPD Bali,Warehouse SMI Cibitung,25/08/2025,18/09/2025,7.6.5,Delivered,Pickup Expedisi SMI Cibitung
+FortiWeb-1000E,FV-1KET122900177,Barang Keluar,Demo,PT Synex Metrodata Indonesia,Warehouse SMI Cibitung,05/02/2025,26/02/2025,7.4.6,Delivered,Pickup Expedisi SMI Cibitung
+SFP TL-SM5110-LR,22384M3001723,Barang Keluar,,,PT Permodalan Nasional Madani,,20/12/2024,,Delivered,
+SFP TL-SM5110-LR,22384M3000931,Barang Keluar,,,PT Permodalan Nasional Madani,,20/12/2024,,Delivered,
+FortiSandbox 1000F,FSA1KFT621000147,Ready,,PT Synex Metrodata Indonesia,,22/08/2025,,4.4.7,Gudang ATS,
+Forti NDR,FAI1KFS124000080,Barang Keluar,Demo,,Warehouse SMI Cibitung,26/01/2026,16/04/2026,7.4.10,Delivered,Pickup SMI Cibitung
+FortiAnalyzer-200F,FL-2HFTB19001120,Barang Keluar,,,,21/01/2026,,7.0.13,Delivered,
+FortiAnalyzer-200F,FL-2HTB18000189,Ready,,,,20/01/2026,,7.0.15,Gudang YES-Jkt,

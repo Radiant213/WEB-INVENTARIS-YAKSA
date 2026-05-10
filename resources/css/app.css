@@ -1,0 +1,23 @@
+@import 'tailwindcss';
+
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+@source '../**/*.blade.php';
+@source '../**/*.js';
+
+@theme {
+    --font-sans: 'Inter', 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+    
+    /* Yaksa Palette */
+    --color-yaksa-red: #DC2626;
+    --color-yaksa-redhover: #B91C1C;
+    --color-yaksa-bg: #F3F4F6;
+    --color-yaksa-text: #374151;
+    --color-yaksa-border: #D1D5DB;
+}
+
+@layer base {
+    button, a, input[type="submit"], input[type="button"], input[type="checkbox"], input[type="radio"], select {
+        cursor: pointer !important;
+    }
+}
